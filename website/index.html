@@ -3,372 +3,598 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Battles - Download</title>
+    <title>The Battles - Official</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #2d1b69 100%);
-            color: #fff;
-            min-height: 100vh;
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            overflow-x: hidden;
         }
-        
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
-            position: relative;
-            overflow: hidden;
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(120, 40, 200, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 100, 0, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(0, 150, 255, 0.05) 0%, transparent 50%);
         }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-            pointer-events: none;
+
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
-        
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #fff, #a78bfa, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: none;
-        }
-        
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: #a78bfa;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-        
-        .hero .tagline {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-        
-        .download-section {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        .download-btn {
-            display: inline-block;
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
             padding: 20px 60px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 700;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.6);
-            background: linear-gradient(135deg, #818cf8, #a78bfa);
-        }
-        
-        .download-info {
-            margin-top: 15px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 40px;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(99, 102, 241, 0.5);
-            transform: translateY(-5px);
-        }
-        
-        .feature-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #e2e8f0;
-        }
-        
-        .feature-card p {
-            color: #94a3b8;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-        
-        .screenshots {
-            text-align: center;
-            padding: 60px 20px;
-        }
-        
-        .screenshots h2 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: #e2e8f0;
-        }
-        
-        .screenshot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .screenshot-placeholder {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 60px 30px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-        
-        .requirements {
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .requirements h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #e2e8f0;
-        }
-        
-        .requirements ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .requirements li {
-            padding: 8px 0;
-            color: #94a3b8;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        
-        .requirements li span:first-child {
-            color: #cbd5e1;
-            font-weight: 500;
-        }
-        
-        .battle-pass-section {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(139, 92, 246, 0.05);
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-            margin: 60px 0;
-        }
-        
-        .battle-pass-section h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #fbbf24, #f59e0b);
+
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff6b00, #ff9500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: 2px;
         }
-        
-        .battle-pass-section p {
-            color: #94a3b8;
-            max-width: 600px;
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #888;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover { color: #fff; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #ff9500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            background: rgba(255, 107, 0, 0.05);
+        }
+
+        .hero-badge i { font-size: 0.7rem; }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, #ff6b00, #ff3d00, #ff6b00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 500px;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #ff6b00, #ff3d00);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 25px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(255, 107, 0, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 35px;
+            background: transparent;
+            color: #888;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            color: #fff;
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 60px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            padding: 35px 30px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(255, 107, 0, 0.2);
+            background: rgba(255, 107, 0, 0.02);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .feature-icon.orange { background: rgba(255, 107, 0, 0.1); color: #ff6b00; }
+        .feature-icon.blue { background: rgba(0, 150, 255, 0.1); color: #0096ff; }
+        .feature-icon.purple { background: rgba(150, 50, 255, 0.1); color: #9632ff; }
+        .feature-icon.green { background: rgba(0, 200, 100, 0.1); color: #00c864; }
+        .feature-icon.red { background: rgba(255, 50, 50, 0.1); color: #ff3232; }
+        .feature-icon.gold { background: rgba(255, 200, 0, 0.1); color: #ffc800; }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #555;
+            font-size: 0.9rem;
             line-height: 1.6;
         }
-        
-        .tcon-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            color: #1a1a2e;
-            padding: 4px 12px;
-            border-radius: 20px;
+
+        /* Battle Pass Section */
+        .battlepass {
+            padding: 100px 60px;
+            background: rgba(255, 107, 0, 0.02);
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .bp-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .bp-tiers {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .bp-tier {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
             font-weight: 700;
-            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
         }
-        
+
+        .bp-tier.gold { border-color: rgba(255, 200, 0, 0.4); color: #ffc800; }
+        .bp-tier.epic { border-color: rgba(150, 50, 255, 0.4); color: #9632ff; }
+
+        /* Requirements */
+        .requirements {
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .req-card {
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+
+        .req-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .req-list {
+            list-style: none;
+        }
+
+        .req-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .req-list li i { color: #ff6b00; font-size: 0.7rem; }
+
+        /* Footer */
         footer {
+            padding: 40px 60px;
             text-align: center;
-            padding: 40px 20px;
-            color: #475569;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p {
+            color: #333;
             font-size: 0.85rem;
         }
-        
-        footer a {
-            color: #6366f1;
-            text-decoration: none;
-        }
-        
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; letter-spacing: 4px; }
-            .features { padding: 0 20px; }
-            .download-btn { padding: 16px 40px; font-size: 1.1rem; }
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-sub { font-size: 1rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .bp-content { grid-template-columns: 1fr; }
+            .req-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .hero-actions { flex-direction: column; }
+            .features { padding: 60px 20px; }
         }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <h1>The Battles</h1>
-        <p class="subtitle">2D Battle Royale</p>
-        <p class="tagline">
-            Drop in, gear up, and fight to be the last one standing. 
-            Fast-paced 2D battle royale action with bots, weapons, and a shrinking storm.
-        </p>
-    </section>
-    
-    <section class="download-section">
-        <a href="https://github.com/itziktdk/the-battles/releases/download/v1.0/TheBattles-v1.0.zip" class="download-btn">
-            ⬇ Download for Windows
-        </a>
-        <p class="download-info">
-            Version 1.0 | Windows 64-bit | ~15 MB
-        </p>
-    </section>
-    
-    <section class="features">
-        <div class="feature-card">
-            <div class="icon">🎯</div>
-            <h3>Battle Royale - "The Royal"</h3>
-            <p>Fight against 12 AI bots in a shrinking storm zone. Loot weapons, take cover, and be the last one standing.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">🎓</div>
-            <h3>Tutorial Mode</h3>
-            <p>Learn the basics with guided instructions. Practice movement, aiming, and combat against easy bots.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">🔫</div>
-            <h3>Multiple Weapons</h3>
-            <p>Find and equip Pistols, Shotguns, and Assault Rifles. Each with unique damage, range, and fire rate.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">🌀</div>
-            <h3>Dynamic Storm</h3>
-            <p>The zone shrinks over time, pushing players together. Stay in the safe zone or take damage!</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">🏆</div>
-            <h3>Battle Pass (50 Tiers)</h3>
-            <p>Earn XP from matches to unlock rewards. Progress through 50 tiers of skins, emotes, and <span class="tcon-badge">T-CON</span> currency.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">💰</div>
-            <h3>T-CON Currency</h3>
-            <p>Earn T-CON from victories and Battle Pass rewards. Save up for future cosmetic unlocks!</p>
-        </div>
-    </section>
-    
-    <section class="battle-pass-section">
-        <h2>⭐ Battle Pass Season 1</h2>
-        <p>
-            50 tiers of rewards including player skins, movement trails, emotes, and 
-            <span class="tcon-badge">T-CON</span> currency. Earn XP every match — 
-            kills, wins, and participation all count toward your progress.
-        </p>
-    </section>
-    
-    <section class="screenshots">
-        <h2>Gameplay</h2>
-        <div class="screenshot-grid">
-            <div class="screenshot-placeholder">
-                🎮 Top-down 2D combat with colored shapes<br>
-                (Screenshots coming soon)
-            </div>
-            <div class="screenshot-placeholder">
-                🗺️ Map with buildings, walls, and cover<br>
-                (Screenshots coming soon)
-            </div>
-            <div class="screenshot-placeholder">
-                📊 HUD with health, shield, minimap<br>
-                (Screenshots coming soon)
-            </div>
-        </div>
-    </section>
-    
-    <section class="requirements">
-        <h2>System Requirements</h2>
-        <ul>
-            <li><span>OS</span><span>Windows 10/11 64-bit</span></li>
-            <li><span>CPU</span><span>Any dual-core processor</span></li>
-            <li><span>RAM</span><span>2 GB</span></li>
-            <li><span>Graphics</span><span>Any GPU with OpenGL 2.0+</span></li>
-            <li><span>Storage</span><span>50 MB</span></li>
-            <li><span>Resolution</span><span>1920x1080 recommended</span></li>
+    <div class="bg-animation"></div>
+    <div class="bg-grid"></div>
+
+    <nav>
+        <div class="nav-logo">THE BATTLES</div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#battlepass">Battle Pass</a></li>
+            <li><a href="#download">Download</a></li>
         </ul>
-    </section>
-    
-    <section class="features" style="max-width: 800px;">
-        <div class="feature-card">
-            <div class="icon">⌨️</div>
-            <h3>Controls</h3>
-            <p>
-                <strong>WASD</strong> - Move<br>
-                <strong>Mouse</strong> - Aim<br>
-                <strong>Left Click</strong> - Shoot<br>
-                <strong>ESC</strong> - Pause/Menu<br>
-                Walk over weapons to pick them up
-            </p>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">
+            <i class="fas fa-circle"></i>
+            Season 1 — Now Live
         </div>
-        <div class="feature-card">
-            <div class="icon">📋</div>
-            <h3>How to Play</h3>
-            <p>
-                1. Download and extract the ZIP<br>
-                2. Run TheBattles.exe<br>
-                3. Try Tutorial first, then play The Royal<br>
-                4. Eliminate all bots to win!<br>
-                5. Check Battle Pass for your rewards
-            </p>
+        <h1><span class="gradient">THE BATTLES</span></h1>
+        <p class="hero-sub">Drop in. Fight. Survive. The ultimate 2D battle royale experience.</p>
+        
+        <div class="hero-actions" id="download">
+            <a href="https://github.com/itziktdk/the-battles/releases/download/v1.0/TheBattles-v1.0.zip" class="btn-primary">
+                <i class="fas fa-download"></i> Download for Windows
+            </a>
+            <a href="#features" class="btn-secondary">
+                <i class="fas fa-play"></i> Learn More
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">50</div>
+                <div class="stat-label">Players per Match</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Weapon Classes</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">50</div>
+                <div class="stat-label">Battle Pass Tiers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">60</div>
+                <div class="stat-label">FPS Target</div>
+            </div>
         </div>
     </section>
-    
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>Core Features</h2>
+            <p>Everything you need for the perfect battle royale</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon orange"><i class="fas fa-crosshairs"></i></div>
+                <h3>The Royal</h3>
+                <p>Classic battle royale mode. 50 players drop in, one walks out. Fight through a shrinking storm to claim victory.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon blue"><i class="fas fa-shield-halved"></i></div>
+                <h3>Health & Shield</h3>
+                <p>Dual defense system. Manage your health and shield to outlast your opponents in intense firefights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon purple"><i class="fas fa-gun"></i></div>
+                <h3>Weapon Arsenal</h3>
+                <p>Pistols, Shotguns, and Assault Rifles. Each weapon class offers unique combat advantages.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon green"><i class="fas fa-trophy"></i></div>
+                <h3>Battle Pass</h3>
+                <p>50 tiers of exclusive rewards. Earn XP from matches and unlock skins, T-CON, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon red"><i class="fas fa-hurricane"></i></div>
+                <h3>Dynamic Storm</h3>
+                <p>The storm shrinks over time, forcing players into intense close-quarters combat. Stay in the safe zone or perish.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon gold"><i class="fas fa-coins"></i></div>
+                <h3>T-CON Currency</h3>
+                <p>Earn T-CON from victories and challenges. Spend it in the shop to unlock exclusive skins and items.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="battlepass" id="battlepass">
+        <div class="bp-content">
+            <div>
+                <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; margin-bottom: 15px;">Season 1 Battle Pass</h2>
+                <p style="color: #666; margin-bottom: 25px; line-height: 1.8;">Progress through 50 tiers of rewards by earning XP in The Royal. Every match counts — kills, wins, and survival all contribute to your progression.</p>
+                <div style="display: flex; gap: 25px; margin-top: 20px;">
+                    <div>
+                        <div style="font-family: 'Orbitron'; font-size: 1.5rem; color: #ffc800;">500</div>
+                        <div style="color: #555; font-size: 0.8rem; text-transform: uppercase;">T-CON Rewards</div>
+                    </div>
+                    <div>
+                        <div style="font-family: 'Orbitron'; font-size: 1.5rem; color: #9632ff;">12</div>
+                        <div style="color: #555; font-size: 0.8rem; text-transform: uppercase;">Exclusive Skins</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bp-tiers">
+                <div class="bp-tier">1</div>
+                <div class="bp-tier">2</div>
+                <div class="bp-tier">3</div>
+                <div class="bp-tier">4</div>
+                <div class="bp-tier gold">5</div>
+                <div class="bp-tier">6</div>
+                <div class="bp-tier">7</div>
+                <div class="bp-tier">8</div>
+                <div class="bp-tier">9</div>
+                <div class="bp-tier epic">10</div>
+                <div class="bp-tier">11</div>
+                <div class="bp-tier">12</div>
+                <div class="bp-tier">13</div>
+                <div class="bp-tier">14</div>
+                <div class="bp-tier gold">15</div>
+                <div class="bp-tier">16</div>
+                <div class="bp-tier">17</div>
+                <div class="bp-tier">18</div>
+                <div class="bp-tier">19</div>
+                <div class="bp-tier epic">20</div>
+                <div class="bp-tier">21</div>
+                <div class="bp-tier">22</div>
+                <div class="bp-tier">23</div>
+                <div class="bp-tier">24</div>
+                <div class="bp-tier gold">25</div>
+                <div class="bp-tier">...</div>
+                <div class="bp-tier epic">50</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="requirements">
+        <div class="section-header">
+            <h2>System Requirements</h2>
+            <p>Lightweight and optimized for smooth gameplay</p>
+        </div>
+
+        <div class="req-grid">
+            <div class="req-card">
+                <h3><i class="fas fa-desktop"></i> Minimum</h3>
+                <ul class="req-list">
+                    <li><i class="fas fa-circle"></i> Windows 10 64-bit</li>
+                    <li><i class="fas fa-circle"></i> Intel Core i3 or equivalent</li>
+                    <li><i class="fas fa-circle"></i> 4 GB RAM</li>
+                    <li><i class="fas fa-circle"></i> Any dedicated GPU</li>
+                    <li><i class="fas fa-circle"></i> 50 MB storage</li>
+                </ul>
+            </div>
+            <div class="req-card">
+                <h3><i class="fas fa-rocket"></i> Recommended</h3>
+                <ul class="req-list">
+                    <li><i class="fas fa-circle"></i> Windows 11 64-bit</li>
+                    <li><i class="fas fa-circle"></i> Intel Core i5 or equivalent</li>
+                    <li><i class="fas fa-circle"></i> 8 GB RAM</li>
+                    <li><i class="fas fa-circle"></i> NVIDIA GTX 1050 or equivalent</li>
+                    <li><i class="fas fa-circle"></i> 100 MB storage</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 60px; text-align: center;">
+        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; margin-bottom: 15px;">Controls</h2>
+        <p style="color: #555; margin-bottom: 40px;">Easy to learn, hard to master</p>
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 8px;"><i class="fas fa-keyboard" style="color: #ff6b00;"></i></div>
+                <div style="font-weight: 700;">WASD</div>
+                <div style="color: #555; font-size: 0.85rem;">Movement</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 8px;"><i class="fas fa-computer-mouse" style="color: #0096ff;"></i></div>
+                <div style="font-weight: 700;">Mouse</div>
+                <div style="color: #555; font-size: 0.85rem;">Aim & Shoot</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 8px;"><i class="fas fa-1" style="color: #9632ff;"></i><i class="fas fa-2" style="color: #9632ff;"></i><i class="fas fa-3" style="color: #9632ff;"></i></div>
+                <div style="font-weight: 700;">1 / 2 / 3</div>
+                <div style="color: #555; font-size: 0.85rem;">Switch Weapons</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 8px;"><i class="fas fa-right-from-bracket" style="color: #ff3232;"></i></div>
+                <div style="font-weight: 700;">ESC</div>
+                <div style="color: #555; font-size: 0.85rem;">Pause Menu</div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>The Battles v1.0 &copy; 2026 | Built with C++ and SFML</p>
-        <p style="margin-top: 8px;">
-            <a href="https://github.com/itziktdk/the-battles">Source Code</a>
-        </p>
+        <p>&copy; 2026 The Battles. All rights reserved.</p>
     </footer>
 </body>
 </html>
