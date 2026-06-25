@@ -1,0 +1,7 @@
+/home/itziktdk/.openclaw/workspace/the-battles/build-win/CMakeFiles/TheBattles.dir
+/home/itziktdk/.openclaw/workspace/the-battles/build-win/CMakeFiles/edit_cache.dir
+/home/itziktdk/.openclaw/workspace/the-battles/build-win/CMakeFiles/rebuild_cache.dir
+/home/itziktdk/.openclaw/workspace/the-battles/build-win/CMakeFiles/list_install_components.dir
+/home/itziktdk/.openclaw/workspace/the-battles/build-win/CMakeFiles/install.dir
+/home/itziktdk/.openclaw/workspace/the-battles/build-win/CMakeFiles/install/local.dir
+/home/itziktdk/.openclaw/workspace/the-battles/build-win/CMakeFiles/install/strip.dir

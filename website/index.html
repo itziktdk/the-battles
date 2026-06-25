@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Battles - Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #2d1b69 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #a78bfa, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #a78bfa;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .download-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.6);
+            background: linear-gradient(135deg, #818cf8, #a78bfa);
+        }
+        
+        .download-info {
+            margin-top: 15px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .feature-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+        
+        .feature-card p {
+            color: #94a3b8;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        .screenshots {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .screenshots h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #e2e8f0;
+        }
+        
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .screenshot-placeholder {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 60px 30px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .requirements {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .requirements h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+        
+        .requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .requirements li {
+            padding: 8px 0;
+            color: #94a3b8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .requirements li span:first-child {
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+        
+        .battle-pass-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(139, 92, 246, 0.05);
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            margin: 60px 0;
+        }
+        
+        .battle-pass-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .battle-pass-section p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .tcon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: #1a1a2e;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #475569;
+            font-size: 0.85rem;
+        }
+        
+        footer a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; letter-spacing: 4px; }
+            .features { padding: 0 20px; }
+            .download-btn { padding: 16px 40px; font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>The Battles</h1>
+        <p class="subtitle">2D Battle Royale</p>
+        <p class="tagline">
+            Drop in, gear up, and fight to be the last one standing. 
+            Fast-paced 2D battle royale action with bots, weapons, and a shrinking storm.
+        </p>
+    </section>
+    
+    <section class="download-section">
+        <a href="TheBattles-v1.0-win64.zip" class="download-btn">
+            ⬇ Download for Windows
+        </a>
+        <p class="download-info">
+            Version 1.0 | Windows 64-bit | ~15 MB
+        </p>
+    </section>
+    
+    <section class="features">
+        <div class="feature-card">
+            <div class="icon">🎯</div>
+            <h3>Battle Royale - "The Royal"</h3>
+            <p>Fight against 12 AI bots in a shrinking storm zone. Loot weapons, take cover, and be the last one standing.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🎓</div>
+            <h3>Tutorial Mode</h3>
+            <p>Learn the basics with guided instructions. Practice movement, aiming, and combat against easy bots.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔫</div>
+            <h3>Multiple Weapons</h3>
+            <p>Find and equip Pistols, Shotguns, and Assault Rifles. Each with unique damage, range, and fire rate.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🌀</div>
+            <h3>Dynamic Storm</h3>
+            <p>The zone shrinks over time, pushing players together. Stay in the safe zone or take damage!</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🏆</div>
+            <h3>Battle Pass (50 Tiers)</h3>
+            <p>Earn XP from matches to unlock rewards. Progress through 50 tiers of skins, emotes, and <span class="tcon-badge">T-CON</span> currency.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">💰</div>
+            <h3>T-CON Currency</h3>
+            <p>Earn T-CON from victories and Battle Pass rewards. Save up for future cosmetic unlocks!</p>
+        </div>
+    </section>
+    
+    <section class="battle-pass-section">
+        <h2>⭐ Battle Pass Season 1</h2>
+        <p>
+            50 tiers of rewards including player skins, movement trails, emotes, and 
+            <span class="tcon-badge">T-CON</span> currency. Earn XP every match — 
+            kills, wins, and participation all count toward your progress.
+        </p>
+    </section>
+    
+    <section class="screenshots">
+        <h2>Gameplay</h2>
+        <div class="screenshot-grid">
+            <div class="screenshot-placeholder">
+                🎮 Top-down 2D combat with colored shapes<br>
+                (Screenshots coming soon)
+            </div>
+            <div class="screenshot-placeholder">
+                🗺️ Map with buildings, walls, and cover<br>
+                (Screenshots coming soon)
+            </div>
+            <div class="screenshot-placeholder">
+                📊 HUD with health, shield, minimap<br>
+                (Screenshots coming soon)
+            </div>
+        </div>
+    </section>
+    
+    <section class="requirements">
+        <h2>System Requirements</h2>
+        <ul>
+            <li><span>OS</span><span>Windows 10/11 64-bit</span></li>
+            <li><span>CPU</span><span>Any dual-core processor</span></li>
+            <li><span>RAM</span><span>2 GB</span></li>
+            <li><span>Graphics</span><span>Any GPU with OpenGL 2.0+</span></li>
+            <li><span>Storage</span><span>50 MB</span></li>
+            <li><span>Resolution</span><span>1920x1080 recommended</span></li>
+        </ul>
+    </section>
+    
+    <section class="features" style="max-width: 800px;">
+        <div class="feature-card">
+            <div class="icon">⌨️</div>
+            <h3>Controls</h3>
+            <p>
+                <strong>WASD</strong> - Move<br>
+                <strong>Mouse</strong> - Aim<br>
+                <strong>Left Click</strong> - Shoot<br>
+                <strong>ESC</strong> - Pause/Menu<br>
+                Walk over weapons to pick them up
+            </p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📋</div>
+            <h3>How to Play</h3>
+            <p>
+                1. Download and extract the ZIP<br>
+                2. Run TheBattles.exe<br>
+                3. Try Tutorial first, then play The Royal<br>
+                4. Eliminate all bots to win!<br>
+                5. Check Battle Pass for your rewards
+            </p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>The Battles v1.0 &copy; 2026 | Built with C++ and SFML</p>
+        <p style="margin-top: 8px;">
+            <a href="https://github.com/itziktdk/the-battles">Source Code</a>
+        </p>
+    </footer>
+</body>
+</html>
